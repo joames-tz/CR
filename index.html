@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#30172b">
+<title>A Little Surprise for Ireen ❤️</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --pink: #ff9fc9;
+  --purple: #c5a1ff;
+  --white: #fffaff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: #291526;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 22px;
+  overflow-x: hidden;
+  isolation: isolate;
+  background: transparent;
+}
+
+/* FULL PHOTO BACKGROUND */
+
+#photoBackground {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  overflow: hidden;
+  background: #291526;
+  transition: background .8s ease;
+}
+
+#photoBackground::before {
+  content: "";
+  position: absolute;
+  inset: -25px;
+  background: url("./ireen.jpeg") center center / cover no-repeat;
+  filter: blur(22px);
+  opacity: .75;
+  transform: scale(1.05);
+  transition: opacity 1s ease, filter 1s ease;
+}
+
+#photoBackground img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+#photoOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background: rgba(25, 8, 28, .28);
+  transition: background 1s ease;
+}
+
+/* POEM MODE — REVEAL THE PHOTO CLEARLY */
+
+body.poem-open #photoBackground::before {
+  display: none;
+}
+
+body.poem-open #photoBackground img {
+  object-fit: cover;
+  object-position: center;
+}
+
+body.poem-open #photoOverlay {
+  background: rgba(15, 5, 18, .24);
+}
+
+/* FLOATING HEARTS */
+
+#hearts {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.heart {
+  position: absolute;
+  bottom: -35px;
+  opacity: 0;
+  animation: floatUp linear forwards;
+  filter: drop-shadow(0 0 9px rgba(255,150,210,.6));
+}
+
+@keyframes floatUp {
+  10% { opacity: .8; }
+  100% {
+    transform: translateY(-115vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* MAIN CARD */
+
+.game-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 720px;
+  padding: clamp(25px, 6vw, 48px);
+  border-radius: 32px;
+  background: rgba(35, 15, 39, .48);
+  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(13px);
+  border: 1px solid rgba(255,255,255,.32);
+  box-shadow: 0 25px 90px rgba(0,0,0,.3);
+  animation: cardEnter .8s ease both;
+}
+
+@keyframes cardEnter {
+  from { opacity: 0; transform: translateY(25px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+#screenContent {
+  animation: screenEnter .5s ease both;
+}
+
+@keyframes screenEnter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 8vw, 4rem);
+  line-height: 1.12;
+  color: #fff4fb;
+  text-shadow: 0 4px 25px rgba(255,140,200,.3);
+}
+
+.top-label {
+  text-align: center;
+  color: #ffd2e8;
+  letter-spacing: 4px;
+  font-size: .68rem;
+  font-weight: 800;
+  margin-bottom: 23px;
+}
+
+.emoji-big {
+  font-size: clamp(3.3rem, 12vw, 5rem);
+  text-align: center;
+  margin-bottom: 20px;
+  animation: gentleFloat 3.2s ease-in-out infinite;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-11px); }
+}
+
+.question-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.45rem, 5vw, 2.1rem);
+  line-height: 1.48;
+  color: #fff0f8;
+  text-align: center;
+  margin: 22px 0 16px;
+  text-shadow: 0 2px 8px rgba(0,0,0,.4);
+}
+
+.small-question {
+  color: #fff0f8;
+  text-align: center;
+  font-size: .94rem;
+  line-height: 1.8;
+  margin-bottom: 22px;
+  text-shadow: 0 2px 7px rgba(0,0,0,.4);
+}
+
+input[type="text"], textarea, input[type="password"] {
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: 19px;
+  border: 1px solid rgba(255,255,255,.5);
+  background: rgba(255,255,255,.17);
+  color: white;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: .3s;
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgba(255,255,255,.8);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 125px;
+}
+
+input:focus, textarea:focus {
+  border-color: #ffadd4;
+  background: rgba(255,255,255,.23);
+  box-shadow: 0 0 0 4px rgba(255,140,195,.15);
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 13px;
+  margin-top: 24px;
+}
+
+.btn {
+  padding: 15px 30px;
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 50px;
+  background: linear-gradient(135deg,#ff9bc9,#c66de0);
+  color: white;
+  font-size: .96rem;
+  font-weight: 800;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 9px 28px rgba(222,91,166,.28);
+  transition: transform .25s, filter .25s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.1);
+}
+
+.btn:active {
+  transform: scale(.96);
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,.16);
+  color: #fff0f8;
+  box-shadow: none;
+}
+
+.btn:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
+.footer-note {
+  text-align: center;
+  color: #f5d9e9;
+  font-size: .78rem;
+  margin-top: 30px;
+  letter-spacing: 1px;
+}
+
+.progress-area {
+  margin-bottom: 30px;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  color: #fff0f8;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.progress-track {
+  height: 7px;
+  border-radius: 30px;
+  background: rgba(255,255,255,.25);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 30px;
+  background: linear-gradient(90deg,#ff9bc9,#c7a0ff);
+  transition: width .6s ease;
+}
+
+.error-message {
+  color: #ffd1e6;
+  text-align: center;
+  font-size: .9rem;
+  margin-top: 12px;
+  min-height: 20px;
+}
+
+/* MUSIC BUTTON */
+
+.music-control {
+  position: fixed;
+  z-index: 40;
+  bottom: 18px;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 17px;
+  border-radius: 40px;
+  background: rgba(35,15,39,.85);
+  color: white;
+  border: 1px solid rgba(255,255,255,.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 5px 25px rgba(0,0,0,.25);
+}
+
+/* ===================================
+   FULLSCREEN POEM — CLEAR PHOTO
+   =================================== */
+
+body.poem-open .game-container {
+  display: none !important;
+}
+
+.poem-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  overflow-y: auto;
+  background: transparent;
+  animation: poemEnter 1s ease both;
+}
+
+@keyframes poemEnter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.poem-card {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  margin: auto;
+  padding: 35px 25px;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  animation: poemCard 1s .15s ease both;
+}
+
+@keyframes poemCard {
+  from { transform: translateY(25px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.poem-rose {
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+  animation: gentleFloat 4s ease-in-out infinite;
+}
+
+.poem-eyebrow {
+  text-align: center;
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 12px #000;
+}
+
+.horrah {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 8vw, 3.5rem);
+  text-align: center;
+  color: #fff;
+  margin-bottom: 8px;
+  text-shadow: 0 3px 18px #000;
+}
+
+.poem-divider {
+  text-align: center;
+  color: #fff;
+  letter-spacing: 6px;
+  margin: 18px 0;
+  text-shadow: 0 2px 10px #000;
+}
+
+.poem-text {
+  white-space: pre-line;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  color: #fff;
+  line-height: 2;
+  font-size: clamp(1rem, 2.8vw, 1.2rem);
+  letter-spacing: .2px;
+  text-shadow:
+    0 2px 5px #000,
+    0 0 14px rgba(0,0,0,.9);
+  padding: 0 5px;
+}
+
+.poem-actions {
+  text-align: center;
+  margin-top: 28px;
+}
+
+.love-btn {
+  font-size: 1.8rem;
+  padding: 12px 42px;
+  animation: lovePulse 2.4s ease-in-out infinite;
+}
+
+@keyframes lovePulse {
+  0%, 100% { box-shadow: 0 9px 28px rgba(222,91,166,.28); }
+  50% { box-shadow: 0 9px 42px rgba(255,120,190,.65); }
+}
+
+.submit-status {
+  text-align: center;
+  font-size: .85rem;
+  color: white;
+  margin-top: 12px;
+  text-shadow: 0 2px 8px #000;
+  min-height: 18px;
+}
+
+@media(max-width:480px) {
+  .poem-fullscreen { padding: 12px; }
+  .poem-card { padding: 25px 12px; }
+  .poem-text { font-size: .98rem; line-height: 1.9; }
+}
+
+/* ===================================
+   ADMIN PANEL
+   =================================== */
+
+.admin-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(15,5,20,.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.admin-box {
+  background: rgba(48,22,49,.97);
+  border: 1px solid rgba(255,255,255,.25);
+  width: 100%;
+  max-width: 650px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 25px;
+  border-radius: 25px;
+  color: white;
+}
+
+.admin-box h2 { margin-bottom: 15px; }
+
+.admin-section {
+  background: rgba(255,255,255,.09);
+  padding: 18px;
+  margin: 14px 0;
+  border-radius: 17px;
+}
+
+.admin-label {
+  color: #ffafd3;
+  font-size: .78rem;
+  font-weight: 800;
+  margin: 12px 0 5px;
+  letter-spacing: .5px;
+}
+
+.admin-value {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: white;
+  font-size: .92rem;
+  line-height: 1.6;
+}
+
+.admin-status {
+  text-align: center;
+  margin: 15px;
+  color: #ffd2e8;
+  font-size: .82rem;
+}
+
+.admin-scroll {
+  max-height: 42vh;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.admin-entry {
+  border-top: 1px dashed rgba(255,255,255,.2);
+  padding-top: 14px;
+  margin-top: 14px;
+}
+
+.admin-entry:first-child {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.admin-entry-head {
+  font-size: .68rem;
+  letter-spacing: 1px;
+  color: #ffc9e2;
+  font-weight: 800;
+  margin-bottom: 8px;
+  word-break: break-all;
+}
+
+.admin-error {
+  color: #ffb3c8;
+  font-size: .85rem;
+  line-height: 1.6;
+  text-align: center;
+  padding: 10px;
+  background: rgba(255,80,120,.12);
+  border-radius: 12px;
+}
+
+@media(max-width:480px) {
+  body { padding: 13px; }
+  .game-container { padding: 28px 19px; border-radius: 25px; }
+  .btn { padding: 14px 23px; }
+  .music-control { bottom: 12px; right: 12px; }
+  .admin-scroll { max-height: 38vh; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="photoBackground">
+  <img src="./ireen.jpeg" alt="Ireen's photograph">
+</div>
+
+<div id="photoOverlay"></div>
+<div id="hearts"></div>
+
+<main class="game-container">
+  <div id="screenContent"></div>
+</main>
+
+<audio id="audio1" src="./song1.mp3" preload="auto"></audio>
+<audio id="audio2" src="./song2.mp3" preload="auto"></audio>
+<audio id="audio3" src="./song3.mp3" preload="auto"></audio>
+
+<button class="music-control" id="musicButton" type="button">
+  <span>🎵</span>
+  <span id="musicLabel">Play music</span>
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+// =====================================
+// SUPABASE
+// =====================================
+
+const SUPABASE_URL = 'https://hnlcyufhcodtozxdgyjp.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_reZC8l3xE1BXqshx2hutiA_810V8OL0';
+let sbClient = null;
+
+try {
+  if (window.supabase) {
+    sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+} catch (error) {
+  console.error('Supabase initialization error:', error);
+}
+
+// =====================================
+// HELPERS
+// =====================================
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+
+// =====================================
+// SESSION AND ANSWERS
+// =====================================
+
+function newSession() {
+  return 'ireen_' + Date.now() + '_' + Math.random().toString(36).slice(2,10);
+}
+
+let SESSION_ID = localStorage.getItem('ireen_session_id') || newSession();
+localStorage.setItem('ireen_session_id', SESSION_ID);
+
+const screen = document.getElementById('screenContent');
+let answers = {};
+let loopIndex = 0;
+
+function saveLocal() {
+  localStorage.setItem('ireen_local', JSON.stringify(answers));
+}
+
+function setAnswer(key, value) {
+  answers[key] = value;
+  saveLocal();
+}
+
+// =====================================
+// DATABASE SUBMISSION (SECRET BACKGROUND SAVE)
+// =====================================
+async function submitAnswers() {
+  if (!sbClient) {
+    return { success: false, error: 'Supabase client is not initialized.' };
+  }
+
+  const payload = {
+    session_id: SESSION_ID,
+    happiest: answers.happiest || null,
+    saddest: answers.saddest || null,
+    hates: answers.hates || null,
+    crush: answers.crush || null
+  };
+
+  try {
+    const { error } = await sbClient.from('ireen_answers').insert(payload);
+    if (error) {
+      console.error('Supabase error:', error);
+      return { success: false, error: error.message };
+    }
+    return { success: true };
+  } catch (err) {
+    return { success: false, error: err.message };
+  }
+}
+
+// =====================================
+// FLOATING HEARTS
+// =====================================
+
+function createHeart() {
+  const container = document.getElementById('hearts');
+  if (!container) return;
+
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  const symbols = ['❤️','💕','💗','💖','✨','🌸','🦋'];
+  heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+  heart.style.left = Math.random() * 100 + '%';
+  heart.style.fontSize = (15 + Math.random() * 21) + 'px';
+  heart.style.animationDuration = (6 + Math.random() * 6) + 's';
+
+  container.appendChild(heart);
+  setTimeout(() => heart.remove(), 13000);
+}
+
+setInterval(createHeart, 750);
+
+// =====================================
+// MUSIC SYSTEM
+// =====================================
+
+const songIds = ['audio1', 'audio2', 'audio3'];
+let currentSong = 0;
+let musicStarted = false;
+
+const musicButton = document.getElementById('musicButton');
+const musicLabel = document.getElementById('musicLabel');
+
+function updateMusicButton(text) {
+  musicLabel.textContent = text;
+}
+
+async function playCurrentSong() {
+  const audio = document.getElementById(songIds[currentSong]);
+  if (!audio) return false;
+
+  songIds.forEach(id => {
+    const other = document.getElementById(id);
+    if (other && other !== audio) {
+      other.pause();
+      other.currentTime = 0;
+    }
+  });
+
+  audio.volume = 0.7;
+  try {
+    await audio.play();
+    musicStarted = true;
+    updateMusicButton('Music playing');
+    return true;
+  } catch (error) {
+    musicStarted = false;
+    updateMusicButton('Tap to play music');
+    return false;
+  }
+}
+
+function playNextSong() {
+  currentSong = (currentSong + 1) % songIds.length;
+  playCurrentSong();
+}
+
+songIds.forEach(id => {
+  const audio = document.getElementById(id);
+  audio.addEventListener('ended', playNextSong);
+});
+
+async function startMusic() {
+  if (musicStarted) return;
+  currentSong = 0;
+  await playCurrentSong();
+}
+
+musicButton.addEventListener('click', async () => {
+  const audio = document.getElementById(songIds[currentSong]);
+  if (musicStarted && audio && !audio.paused) {
+    audio.pause();
+    musicStarted = false;
+    updateMusicButton('Music paused');
+  } else {
+    await playCurrentSong();
+  }
+});
+
+// =====================================
+// PROGRESS
+// =====================================
+
+function progress(step) {
+  return `
+    <div class="progress-area">
+      <div class="progress-info">
+        <span>A LITTLE JOURNEY ✨</span>
+        <span>${step} OF 4</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" style="width:${step * 25}%"></div>
+      </div>
+    </div>
+  `;
+}
+
+// =====================================
+// INTRO
+// =====================================
+
+function showIntro() {
+  document.body.classList.remove('poem-open');
+  screen.innerHTML = `
+    <div class="top-label">A LITTLE SOMETHING FOR YOU</div>
+    <div class="emoji-big" id="secretTrigger">💗</div>
+    <h1>Hello, Ireen</h1>
+    <p class="question-text">There's a little surprise waiting for you...</p>
+    <p class="small-question">A few little questions, a little mystery, and something special at the end. ✨</p>
+    <div class="btn-group">
+      <button class="btn" id="yesBtn">Discover the surprise 💖</button>
+      <button class="btn btn-secondary" id="noBtn">Maybe later</button>
+    </div>
+    <div class="footer-note">A little moment made special 🌷</div>
+  `;
+
+  let taps = 0;
+  let timer;
+
+  document.getElementById('secretTrigger').onclick = () => {
+    taps++;
+    clearTimeout(timer);
+    timer = setTimeout(() => taps = 0, 1300);
+    if (taps >= 5) {
+      taps = 0;
+      promptAdminPassword(
+        (password) => openAdminPanel({ heading: 'All Shared Answers', adminPassword: password })
+      );
+    }
+  };
+
+  document.getElementById('yesBtn').onclick = () => {
+    startMusic();
+    SESSION_ID = newSession();
+    localStorage.setItem('ireen_session_id', SESSION_ID);
+    answers = {};
+    answersSubmitted = false;
+    saveLocal();
+    loopIndex = 0;
+    showHappyQuestion();
+  };
+
+  document.getElementById('noBtn').onclick = () => {
+    screen.innerHTML = `
+      <div class="emoji-big">🌷</div>
+      <h1>That's okay!</h1>
+      <p class="question-text">The little surprise will be here whenever you're ready.</p>
+      <div class="btn-group"><button class="btn" id="backBtn">Go back</button></div>
+    `;
+    document.getElementById('backBtn').onclick = showIntro;
+  };
+}
+
+// =====================================
+// QUESTION 1
+// =====================================
+function showHappyQuestion() {
+  screen.innerHTML = `
+    ${progress(1)}
+    <div class="emoji-big">🌸</div>
+    <div class="top-label">CHAPTER ONE</div>
+    <h1>A Beautiful Memory</h1>
+    <p class="question-text">What was the happiest day of your life?</p>
+    <p class="small-question">I'd love to hear about a moment that made you smile.</p>
+    <textarea id="happyInput" placeholder="Tell your story..."></textarea>
+    <div class="error-message" id="happyError"></div>
+    <div class="btn-group"><button class="btn" id="next1">Next little surprise →</button></div>
+  `;
+
+  document.getElementById('next1').onclick = () => {
+    const val = document.getElementById('happyInput').value.trim();
+    const error = document.getElementById('happyError');
+    if (!val) {
+      error.textContent = 'Please share a memory to continue 😊';
+      document.getElementById('happyInput').focus();
+      return;
+    }
+    error.textContent = '';
+    setAnswer('happiest', val);
+    showSadQuestion();
+  };
+}
+
+// =====================================
+// QUESTION 2
+// =====================================
+function showSadQuestion() {
+  screen.innerHTML = `
+    ${progress(2)}
+    <div class="emoji-big">🌙</div>
+    <div class="top-label">CHAPTER TWO</div>
+    <h1>A Thoughtful Moment</h1>
+    <p class="question-text">What was one of the most challenging days of your life?</p>
+    <p class="small-question">Only share what you're comfortable sharing.</p>
+    <textarea id="sadInput" placeholder="Your thoughts..."></textarea>
+    <div class="error-message" id="sadError"></div>
+    <div class="btn-group"><button class="btn" id="next2">Continue ✨</button></div>
+  `;
+
+  document.getElementById('next2').onclick = () => {
+    const val = document.getElementById('sadInput').value.trim();
+    const error = document.getElementById('sadError');
+    if (!val) {
+      error.textContent = 'Please write something to continue 😊';
+      document.getElementById('sadInput').focus();
+      return;
+    }
+    error.textContent = '';
+    setAnswer('saddest', val);
+    showHateQuestion();
+  };
+}
+
+// =====================================
+// QUESTION 3
+// =====================================
+function showHateQuestion() {
+  screen.innerHTML = `
+    ${progress(3)}
+    <div class="emoji-big">🦋</div>
+    <div class="top-label">CHAPTER THREE</div>
+    <h1>Your Little Preferences</h1>
+    <p class="question-text">What behaviour do you dislike the most?</p>
+    <p class="small-question">Everyone has something they just can't stand!</p>
+    <textarea id="hateInput" placeholder="Tell me..."></textarea>
+    <div class="error-message" id="hateError"></div>
+    <div class="btn-group"><button class="btn" id="next3">One more thing →</button></div>
+  `;
+
+  document.getElementById('next3').onclick = () => {
+    const val = document.getElementById('hateInput').value.trim();
+    const error = document.getElementById('hateError');
+    if (!val) {
+      error.textContent = 'Please share something to continue 😊';
+      document.getElementById('hateInput').focus();
+      return;
+    }
+    error.textContent = '';
+    setAnswer('hates', val);
+    showCrushQuestion();
+  };
+}
+
+// =====================================
+// QUESTION 4 — A NAME IS REQUIRED, NO SKIP
+// =====================================
+function showCrushQuestion() {
+  loopIndex = 0;
+  renderCrushScreen(
+    'Who is your crush or boyfriend?',
+    'There is no skipping this one — a name is required 😊'
+  );
+}
+
+function renderCrushScreen(heading, subtext) {
+  screen.innerHTML = `
+    ${progress(4)}
+    <div class="emoji-big">🤫</div>
+    <div class="top-label">THE FINAL LITTLE MYSTERY</div>
+    <h1>${heading}</h1>
+    <p class="question-text">Please enter a name to continue.</p>
+    <p class="small-question">${subtext}</p>
+    <input type="text" id="crushInput" maxlength="100" placeholder="A name... 👀" autocomplete="off">
+    <div class="error-message" id="crushError"></div>
+    <div class="btn-group"><button class="btn" id="next4">Reveal the surprise ❤️</button></div>
+  `;
+
+  attachCrushEvents();
+}
+
+let answersSubmitted = false;
+let crushSaveTimer;
+
+function attachCrushEvents() {
+  const input = document.getElementById('crushInput');
+  const error = document.getElementById('crushError');
+  const button = document.getElementById('next4');
+
+  // Hide the button because we are now saving automatically when she stops typing
+  if (button) button.style.display = 'none';
+
+  input.addEventListener('input', () => {
+    clearTimeout(crushSaveTimer);
+    answersSubmitted = false;
+
+    const name = input.value.trim();
+
+    if (!name) {
+      error.textContent = 'Please enter a name to continue 😊';
+      return;
+    }
+
+    error.textContent = ''; // clear errors while typing
+
+    // Start the secret save countdown
+    crushSaveTimer = setTimeout(async () => {
+      const finalName = input.value.trim();
+
+      if (!finalName || answersSubmitted) return;
+
+      setAnswer('crush', finalName);
+      
+      // Gentle wait message
+      error.textContent = 'Please wait ❤️❤️';
+
+      // Secretly submit in the background
+      const result = await submitAnswers();
+
+      if (!result.success) {
+        error.textContent = 'Connection issue, but let\'s continue... ❤️';
+        setTimeout(() => {
+          answersSubmitted = true;
+          showPoem();
+        }, 1500);
+        return;
+      }
+
+      answersSubmitted = true;
+      showPoem();
+    }, 2000); // 2 seconds after she stops typing
+  });
+}
+
+// =====================================
+// THE POEM — BEAUTIFUL + PHOTO REVEALED
+// =====================================
+function showPoem() {
+  document.body.classList.add('poem-open');
+
+  const page = document.createElement('div');
+  page.className = 'poem-fullscreen';
+
+  page.innerHTML = `
+    <div class="poem-card">
+      <div class="poem-rose">🌹</div>
+      <div class="poem-eyebrow">A LITTLE MESSAGE FOR YOU</div>
+      <div class="horrah">Surprise, Ireen!</div>
+      <div class="poem-divider">✦ ─── ❤ ─── ✦</div>
+
+      <div class="poem-text">Hey Ireen, a special friend,
+A little message I want to send.
+
+A little laughter, a little cheer,
+A reminder that you're special, dear.
+
+You have your moments, that's for sure,
+Some make us laugh, some leave us unsure.
+
+Your stories, jokes and little ways,
+Can brighten up the ordinary days.
+
+Sometimes you're quiet, sometimes loud,
+Sometimes you stand out in a crowd.
+
+But here's one thing I want to say,
+Keep being yourself every day.
+
+Through every laugh and every test,
+I wish your journey all the best.
+
+So here's a flower, wrapped with care,
+A little reminder that someone cares.
+
+Keep shining bright, keep reaching high,
+May happiness follow you by and by.
+
+And when this little game is done,
+Remember life is meant for fun.
+
+With warm wishes and a smile,
+Keep making life worthwhile. ❤️</div>
+
+      <div class="poem-divider">✦ ─── ❤ ─── ✦</div>
+      <div class="poem-actions">
+        <button class="btn love-btn" id="loveBtn">❤️</button>
+        <div class="submit-status" id="submitStatus"></div>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(page);
+
+  document.getElementById('loveBtn').onclick = async () => {
+    const button = document.getElementById('loveBtn');
+    button.disabled = true;
+    button.textContent = '✨';
+    document.getElementById('submitStatus').textContent = '';
+
+    promptAdminPassword(
+      (password) => openAdminPanel({
+        heading: 'Answers',
+        showSession: true,
+        adminPassword: password,
+        onClose: finishJourney
+      }),
+      finishJourney
+    );
+  };
+}
+
+function closePoem() {
+  const poem = document.querySelector('.poem-fullscreen');
+  if (poem) poem.remove();
+  document.body.classList.remove('poem-open');
+}
+
+function finishJourney() {
+  closePoem();
+  showThankYou();
+}
+
+// =====================================
+// ADMIN PASSWORD PROMPT
+// =====================================
+function promptAdminPassword(onSuccess, onCancel) {
+  const modal = document.createElement('div');
+  modal.className = 'admin-panel';
+  modal.style.zIndex = '60';
+
+  modal.innerHTML = `
+    <div class="admin-box" style="max-width:440px;">
+      <h2>🔐 Admin Access</h2>
+      <p class="small-question">Enter the admin password to view the answers.</p>
+      <input type="password" id="adminPass" placeholder="Password..." autocomplete="off" style="margin-bottom:12px;">
+      <div class="error-message" id="adminPassError"></div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" id="cancelAdmin">Cancel</button>
+        <button class="btn" id="submitAdmin">Unlock</button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+  const input = modal.querySelector('#adminPass');
+  const err = modal.querySelector('#adminPassError');
+  const submit = modal.querySelector('#submitAdmin');
+
+  const tryUnlock = async () => {
+    const password = input.value.trim();
+
+    if (!password) {
+      err.textContent = 'Please enter the password.';
+      return;
+    }
+
+    submit.disabled = true;
+    err.textContent = 'Checking password...';
+
+    try {
+      const { data, error } = await sbClient.functions.invoke('super-action', { body: { password } });
+
+      if (error || !data || data.error) {
+        throw new Error(data?.error || error?.message || 'Access denied.');
+      }
+
+      modal.remove();
+      if (onSuccess) onSuccess(password);
+
+    } catch (error) {
+      err.textContent = 'Access denied or connection error. Check your password and try again.';
+      submit.disabled = false;
+      input.value = '';
+      input.focus();
+    }
+  };
+
+  submit.onclick = tryUnlock;
+  modal.querySelector('#cancelAdmin').onclick = () => {
+    modal.remove();
+    if (onCancel) onCancel();
+  };
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') tryUnlock();
+  });
+
+  input.focus();
+}
+
+// =====================================
+// ADMIN PANEL (LOCAL + REMOTE ANSWERS)
+// =====================================
+function openAdminPanel(opts) {
+  opts = opts || {};
+  const panel = document.createElement('div');
+  panel.className = 'admin-panel';
+
+  panel.innerHTML = `
+    <div class="admin-box">
+      <h2>🔐 Ireen's Answers</h2>
+      <p class="small-question">
+        ${opts.heading ? escapeHtml(opts.heading) : 'Answers saved in the shared database.'}
+      </p>
+
+      ${opts.showSession ? `
+        <div class="admin-section">
+          <div class="admin-label">💗 This session</div>
+          <div class="admin-label">😊 Happiest day</div>
+          <div class="admin-value" id="aHappy"></div>
+
+          <div class="admin-label">🌙 Challenging day</div>
+          <div class="admin-value" id="aSad"></div>
+
+          <div class="admin-label">🦋 Disliked behaviour</div>
+          <div class="admin-value" id="aHates"></div>
+
+          <div class="admin-label">💗 Crush / boyfriend</div>
+          <div class="admin-value" id="aCrush"></div>
+        </div>
+      ` : ''}
+
+      <div class="admin-section">
+        <div class="admin-label">🌍 All shared submissions</div>
+        <div class="admin-scroll" id="remoteList">
+          <div class="admin-value">Loading…</div>
+        </div>
+      </div>
+
+      <div class="admin-status">
+        Answers are stored in the shared database and visible from any device after entering the password.
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" id="refreshAdmin">Refresh</button>
+        <button class="btn" id="closeAdmin">Close</button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(panel);
+
+  if (opts.showSession) {
+    panel.querySelector('#aHappy').textContent = answers.happiest || '—';
+    panel.querySelector('#aSad').textContent = answers.saddest || '—';
+    panel.querySelector('#aHates').textContent = answers.hates || '—';
+    panel.querySelector('#aCrush').textContent = answers.crush || '—';
+  }
+
+  const remoteList = panel.querySelector('#remoteList');
+
+  async function loadRemote() {
+    remoteList.innerHTML = '<div class="admin-value">Loading shared answers…</div>';
+
+    try {
+      const { data, error } = await sbClient.functions.invoke('super-action', {
+        body: { password: opts.adminPassword }
+      });
+
+      if (error || !data || data.error) {
+        throw new Error(data?.error || error?.message || 'Unable to load answers.');
+      }
+
+      const rows = data.answers || [];
+
+      if (!rows.length) {
+        remoteList.innerHTML = '<div class="admin-value">No submissions yet.</div>';
+        return;
+      }
+
+      remoteList.innerHTML = rows.map((r, i) => {
+        const stamp = r.created_at ? ' · ' + new Date(r.created_at).toLocaleString() : '';
+
+        return `
+          <div class="admin-entry">
+            <div class="admin-entry-head">
+              #${i + 1} · ${escapeHtml(r.session_id || '—')}${escapeHtml(stamp)}
+            </div>
+            <div class="admin-label">😊 Happiest day</div>
+            <div class="admin-value">${escapeHtml(r.happiest || '—')}</div>
+
+            <div class="admin-label">🌙 Challenging day</div>
+            <div class="admin-value">${escapeHtml(r.saddest || '—')}</div>
+
+            <div class="admin-label">🦋 Disliked behaviour</div>
+            <div class="admin-value">${escapeHtml(r.hates || '—')}</div>
+
+            <div class="admin-label">💗 Crush / boyfriend</div>
+            <div class="admin-value">${escapeHtml(r.crush || '—')}</div>
+          </div>
+        `;
+      }).join('');
+
+    } catch (error) {
+      remoteList.innerHTML = '<div class="admin-error">' + escapeHtml(error.message) + '</div>';
+    }
+  }
+
+  loadRemote();
+  panel.querySelector('#refreshAdmin').onclick = loadRemote;
+
+  const close = () => {
+    panel.remove();
+    if (opts.onClose) opts.onClose();
+  };
+
+  panel.querySelector('#closeAdmin').onclick = close;
+  panel.addEventListener('click', event => {
+    if (event.target === panel) close();
+  });
+}
+
+// =====================================
+// FINAL SCREEN
+// =====================================
+function showThankYou() {
+  if (document.getElementById('thankYouShown')) return;
+  document.body.classList.remove('poem-open');
+
+  screen.innerHTML = `
+    <div id="thankYouShown"></div>
+    <div class="emoji-big">💖</div>
+    <div class="top-label">THE END OF OUR LITTLE JOURNEY</div>
+    <h1>Thank You, Ireen!</h1>
+    <p class="question-text">I hope this little surprise made you smile.</p>
+    <p class="small-question">Keep shining, keep smiling and keep making beautiful memories.</p>
+    <div class="btn-group"><button class="btn" id="againBtn">Experience it again ✨</button></div>
+    <div class="footer-note">A little moment to remember 🌷</div>
+  `;
+
+  document.getElementById('againBtn').onclick = showIntro;
+}
+
+// =====================================
+// START
+// =====================================
+showIntro();
+
+</script>
+</body>
+</html>
